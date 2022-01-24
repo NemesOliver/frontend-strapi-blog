@@ -4,7 +4,7 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { ButtonText, ButtonOutlined, Navigation } from "..";
 
 const Header = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const toggleMenu = () => setOpen(!open);
 

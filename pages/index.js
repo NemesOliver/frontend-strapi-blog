@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
 import { Container, Paper, Navigation, Advertisment } from "../components";
+import URL from "../utils/strapi_connection";
 
 export default function Home({ blogs }) {
   const router = useRouter();
@@ -90,11 +90,11 @@ export default function Home({ blogs }) {
 export async function getStaticProps() {
   try {
     const res = await fetch(
-      "http://localhost:1337/api/blogs?populate=blog_img&sort=publishedAt:DESC" // Populate with img and sort
+      `${URL}?populate=blog_img&sort=publishedAt:DESC` // Populate with img and sort
     );
     const { data: blogs } = await res.json();
 
-    return { props: { blogs } };
+    return { props: { blogs }, revalidate: 60 };
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

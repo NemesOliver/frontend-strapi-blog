@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Container, Paper } from "../../components";
+import URL from "../../utils/strapi_connection";
 
 const Blog = ({ blog }) => {
   console.log(blog);
@@ -40,11 +41,11 @@ export default Blog;
 
 export async function getStaticPaths() {
   try {
-    const res = await fetch("http://localhost:1337/api/blogs");
+    const res = await fetch(URL);
     const blogs = await res.json();
 
     const paths = blogs.data.map((blog) => `/blog/${blog.id}`);
-    return { paths, fallback: false };
+    return { paths, fallback: "blocking" };
   } catch (e) {
     console.warn(e.message);
     return { props: {} };
@@ -53,12 +54,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch(
-      `http://localhost:1337/api/blogs/${params.id}?populate=blog_img`
-    );
+    const res = await fetch(`${URL}/${params.id}?populate=blog_img`);
     const blog = await res.json();
 
-    return { props: { blog } };
+    return { props: { blog }, revalidate: 60 };
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

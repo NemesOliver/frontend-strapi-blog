@@ -6,7 +6,7 @@ import { FcContacts } from "react-icons/fc";
  */
 
 export const navLinks = [
-  { name: "Home", icon: <SiHomebridge size={20} color="#15803D" /> },
-  { name: "About", icon: <FcAbout size={20} /> },
-  { name: "Contact", icon: <FcContacts size={20} /> },
+  { name: "Home", to: "/", icon: <SiHomebridge size={20} color="#15803D" /> },
+  { name: "About", to: "/about", icon: <FcAbout size={20} /> },
+  { name: "Contact", to: "/contact", icon: <FcContacts size={20} /> },
 ];

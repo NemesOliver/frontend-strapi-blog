@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body className="bg-[#EFEFEF] h-[200vh] overflow-x-hidden ">
+        <body className="bg-[#EFEFEF] overflow-x-hidden ">
           <Main />
           <NextScript />
         </body>

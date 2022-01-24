@@ -20,9 +20,9 @@ export default function Home({ blogs }) {
 
       <div className="w-screen ">
         <Container>
-          <div className="mt-[70px] grid gap-3 grid-cols-[240px_2fr_1fr] ">
+          <div className="mt-[70px] grid gap-3 grid-cols-[1fr] lg:grid-cols-[240px_2fr_1fr] md:grid-cols-[240px_1fr] ">
             {/* Side bar  */}
-            <div>
+            <div className="hidden md:block ">
               <Paper>
                 <div className="py-3 px-5">
                   <p className="text-[24px] font-medium mb-4 ">
@@ -79,7 +79,9 @@ export default function Home({ blogs }) {
             </main>
 
             {/* Right sidebar */}
-            <Advertisment />
+            <div className="hidden lg:block ">
+              <Advertisment />
+            </div>
           </div>
         </Container>
       </div>

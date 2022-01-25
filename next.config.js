@@ -1,14 +1,23 @@
+const withPlugins = require("next-compose-plugins");
 const withPWA = require("next-pwa");
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["res.cloudinary.com"],
   },
-  pwa: {
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-    // disable: process.env.NODE_ENV === "development",
-  },
 };
+
+module.exports = withPlugins(
+  [
+    withPWA,
+    {
+      pwa: {
+        dest: "public",
+        register: true,
+        skipWaiting: true,
+      },
+    },
+  ],
+  nextConfig
+);

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Container, Paper, Navigation, Advertisment } from "../components";
 import URL from "../utils/strapi_connection";
+import ReactMarkdown from "react-markdown";
 
 export default function Home({ blogs }) {
   const router = useRouter();
@@ -49,7 +50,7 @@ export default function Home({ blogs }) {
                   <Paper hover>
                     {index === 0 && (
                       // render only first image
-                      <div className="relative h-[230px] w-full">
+                      <div className="relative h-[230px] ">
                         <Image
                           src={blog.attributes.blog_img.data.attributes.url}
                           alt="hobbits house"
@@ -69,9 +70,9 @@ export default function Home({ blogs }) {
                         {/* Convert date on fetch in static props */}
                         {new Date(blog.attributes.publishedAt).toDateString()}
                       </p>
-                      <p className="text-[18px]  ">
+                      <ReactMarkdown className="text-[18px] prose ">
                         {`${blog.attributes.body.substring(0, 250)}...`}
-                      </p>
+                      </ReactMarkdown>
                     </div>
                   </Paper>
                 </div>

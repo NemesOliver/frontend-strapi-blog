@@ -1,9 +1,15 @@
-import { Container, Paper } from "../components";
+import { useRouter } from "next/router";
+import { Container, Paper, ButtonText } from "../components";
 
 const About = () => {
+  const router = useRouter();
+
   return (
     <Container>
       <div className="mt-[70px]">
+        <div className="my-3 ">
+          <ButtonText text="&larr; Back" onClick={() => router.back()} />
+        </div>
         <Paper>
           <div className="py-3 px-5">
             <h3 className="text-[30px] font-bold mb-3">

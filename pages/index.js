@@ -90,13 +90,15 @@ export default function Home({ blogs }) {
 }
 
 export async function getStaticProps() {
+  const oneHour = 3600;
+
   try {
     const res = await fetch(
       `${URL}?populate=blog_img&sort=publishedAt:DESC` // Populate with img and sort
     );
     const { data: blogs } = await res.json();
 
-    return { props: { blogs }, revalidate: 60 };
+    return { props: { blogs }, revalidate: oneHour };
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

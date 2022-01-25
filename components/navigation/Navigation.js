@@ -2,13 +2,16 @@ import Link from "next/link";
 import { navLinks } from "./navLinks";
 import { socials } from "./socials";
 
-const Navigation = () => {
+const Navigation = ({ closeMenu }) => {
   return (
     <nav className="pt-4 ">
       <ul>
         {navLinks.map((link, index) => (
           <Link href={link.to} key={index} passHref>
-            <li className="font-medium hover:bg-green-200 hover:scale-[1.02] antialiased transition-all cursor-pointer py-1 pl-1 rounded-md flex items-center">
+            <li
+              onClick={closeMenu}
+              className="font-medium hover:bg-green-200 hover:scale-[1.02] antialiased transition-all cursor-pointer py-1 pl-1 rounded-md flex items-center"
+            >
               {link.icon}
               <a className="pl-2 ">{link.name}</a>
             </li>

@@ -1,13 +1,18 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import { Container, Paper } from "../../components";
+import { Container, Paper, ButtonText } from "../../components";
 import URL from "../../utils/strapi_connection";
 
 const Blog = ({ blog }) => {
+  const router = useRouter();
   return (
     <div className="w-screen">
       <Container>
         <div className="mt-[70px]">
+          <div className="my-3 ">
+            <ButtonText text="&larr; Back" onClick={() => router.back()} />
+          </div>
           <Paper>
             <div className="relative h-[430px] w-full">
               <Image
@@ -54,11 +59,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const oneHour = 3600;
+
   try {
     const res = await fetch(`${URL}/${params.id}?populate=blog_img`);
     const blog = await res.json();
 
-    return { props: { blog }, revalidate: 60 };
+    return { props: { blog }, revalidate: oneHour };
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

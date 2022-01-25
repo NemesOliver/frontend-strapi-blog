@@ -7,10 +7,11 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   const toggleMenu = () => setOpen(!open);
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
-      <div className="bg-white shadow-md h-[60px] w-screen fixed top-0 z-20 ">
+      <div className="bg-white shadow-md h-[60px] w-screen fixed top-0 z-30 ">
         <div className="max-w-[1248px] mx-auto h-full flex items-center px-1 md:px-4 ">
           {/* Mobile menu button */}
           <div className="mr-3 md:hidden" onClick={toggleMenu}>
@@ -40,19 +41,27 @@ const Header = () => {
       {/* Mobile menu */}
 
       {open && (
-        <div className="w-[240px] fixed top-0 left-0 h-screen z-10 bg-white shadow-xl md:hidden ">
-          <div className="mt-[70px]"></div>
-          <Navigation />
-          <hr className="border-black opacity-40 my-4 w-[95%] mx-auto " />
-          <div className="flex flex-col justify-center items-center mt-4 ">
-            <div className="mb-4 ">
-              <ButtonText text="Log in" />
-            </div>
-            <div>
-              <ButtonOutlined text="Create account" />
+        <>
+          <div className="w-[240px] fixed top-0 left-[0] h-screen z-20 bg-white shadow-xl md:hidden animate-fade-in">
+            <div className="mt-[70px]"></div>
+            <Navigation closeMenu={closeMenu} />
+            <hr className="border-black opacity-40 my-4 w-[95%] mx-auto " />
+            <div className="flex flex-col justify-center items-center mt-4 ">
+              <div className="mb-4 ">
+                <ButtonText text="Log in" />
+              </div>
+              <div>
+                <ButtonOutlined text="Create account" />
+              </div>
             </div>
           </div>
-        </div>
+
+          {/* Backdrop */}
+          <div
+            className="bg-black w-screen h-screen fixed top-0 right-0 z-10 opacity-50"
+            onClick={closeMenu}
+          ></div>
+        </>
       )}
     </>
   );

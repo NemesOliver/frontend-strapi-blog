@@ -32,7 +32,8 @@ const Blog = ({ blog }) => {
                   {new Date(blog.data.attributes.publishedAt).toDateString()}
                 </p>
               </div>
-              <ReactMarkdown className="text-[18px] ">
+              
+              <ReactMarkdown className="text-[18px] prose max-w-full">
                 {blog.data.attributes.body}
               </ReactMarkdown>
             </div>

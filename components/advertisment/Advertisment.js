@@ -10,7 +10,7 @@ const Advertisment = () => {
       </div>
       <div className="mb-3">
         <Paper>
-          <div className="py-[200px] px-5 text-center">I could be an add</div>
+          <div className="py-[200px] px-5 text-center">I could be a widget</div>
         </Paper>
       </div>
       <div className="mb-3">

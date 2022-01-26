@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }) {
       />
       <script
         id="ga-analyitcs"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
                 window.dataLayer = window.dataLayer || [];

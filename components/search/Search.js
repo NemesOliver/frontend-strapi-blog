@@ -26,7 +26,7 @@ const Search = () => {
     const search = async () => {
       try {
         const res = await fetch(
-          `${URL}?filters[title][$containsi]=${debouncedQuery}`
+          `${URL}?filters[title][$containsi]=${debouncedQuery}&pagination[limit]=10` // limit to 10 suggestions max
         );
         const { data } = await res.json();
 
@@ -56,7 +56,7 @@ const Search = () => {
         name="autocomplete"
         id="autocomplete"
       />
-      <ul className="absolute bg-blue-200 w-full  rounded-md ">
+      <ul className="absolute w-full  rounded-md ">
         {debouncedQuery &&
           suggestions.map(({ id, attributes: { title } }) => (
             <li

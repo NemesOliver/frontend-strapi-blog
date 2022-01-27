@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
-import { ButtonText, ButtonOutlined, Navigation } from "..";
+import { ButtonText, ButtonOutlined, Navigation, Search } from "..";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -18,7 +18,7 @@ const Header = () => {
             <HiMenuAlt2 size={25} />
           </div>
           <Link href="/" passHref>
-            <a className="font-medium text-[24px] flex-1">
+            <a className="font-medium text-[24px] ">
               The
               <span className="text-green-700 font-medium text-[24px] ">
                 Un
@@ -26,7 +26,9 @@ const Header = () => {
               explained.
             </a>
           </Link>
-          {/* Should be List items */}
+          <div className="flex-1 ml-6 ">
+            <Search />
+          </div>
           <div className="hidden md:flex items-center">
             <div className="mr-4 ">
               <ButtonText text="Log in" />

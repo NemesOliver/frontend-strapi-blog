@@ -26,9 +26,7 @@ const Header = () => {
               explained.
             </a>
           </Link>
-          <div className="flex-1 ml-6 ">
-            <Search />
-          </div>
+          <div className="flex-1 ml-6 ">{/* <Search /> */}</div>
           <div className="hidden md:flex items-center">
             <div className="mr-4 ">
               <ButtonText text="Log in" />

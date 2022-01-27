@@ -14,7 +14,7 @@ const Blog = ({ blog }) => {
             <ButtonText text="&larr; Back" onClick={() => router.back()} />
           </div>
           <Paper>
-            <div className="relative h-[430px] w-full">
+            <div className="relative h-[230px] sm:h-[430px] w-full">
               <Image
                 src={blog.data.attributes.blog_img.data.attributes.url}
                 alt="hobbits house"
@@ -32,7 +32,7 @@ const Blog = ({ blog }) => {
                   {new Date(blog.data.attributes.publishedAt).toDateString()}
                 </p>
               </div>
-              
+
               <ReactMarkdown className="text-[18px] prose max-w-full">
                 {blog.data.attributes.body}
               </ReactMarkdown>

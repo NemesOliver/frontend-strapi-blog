@@ -1,7 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Container, Paper, Navigation, Advertisment } from "../components";
+import {
+  Container,
+  Paper,
+  Navigation,
+  Advertisment,
+  Search,
+} from "../components";
 import URL from "../utils/strapi_connection";
 import ReactMarkdown from "react-markdown";
 
@@ -41,6 +47,9 @@ export default function Home({ blogs }) {
 
             {/* Center content */}
             <main>
+              <div className="mb-3">
+                <Search />
+              </div>
               {blogs.map((blog, index) => (
                 <div
                   key={blog.id}
@@ -49,7 +58,7 @@ export default function Home({ blogs }) {
                 >
                   <Paper hover>
                     {index === 0 && (
-                      // render only first image
+                      // Change alt tags
                       <div className="relative h-[230px] ">
                         <Image
                           src={blog.attributes.blog_img.data.attributes.url}

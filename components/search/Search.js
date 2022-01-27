@@ -41,35 +41,46 @@ const Search = () => {
   // Navigate to article and clear search term and debounced query forcing the options menu to hide
   const forwardToArticle = (id) => {
     router.push(`/blog/${id}`);
+
     setSearchTerm("");
     setDebouncedQuery("");
   };
 
   return (
-    <div className="relative max-w-[300px]">
-      <input
-        onChange={(e) => setSearchTerm(e.target.value)}
-        value={searchTerm}
-        className="py-1.5 pl-3.5 w-full rounded-md border-2 border-green-700 focus:outline-none focus:border-green-500 transition-colors"
-        type="text"
-        placeholder="Search..."
-        name="autocomplete"
-        id="autocomplete"
-      />
-      <ul className="absolute w-full  rounded-md ">
-        {debouncedQuery &&
-          suggestions.map(({ id, attributes: { title } }) => (
-            <li
-              aria-label="option"
-              key={id}
-              onClick={() => forwardToArticle(id)}
-              className="bg-white py-1.5 px-3.5 border-b text-[18px] rounded-md hover:bg-green-100 cursor-pointer active:bg-green-300 transition-colors "
-            >
-              {title}
-            </li>
-          ))}
-      </ul>
-    </div>
+    <>
+      {searchTerm && (
+        <div // Backdrop
+          onClick={() => {
+            setSearchTerm("");
+            setDebouncedQuery("");
+          }}
+          className="bg-black opacity-60 fixed top-0 z-10 right-0 w-screen h-screen"
+        ></div>
+      )}
+
+      <div className="relative max-w-full z-20">
+        <input
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
+          className="py-1.5 pl-3.5 w-full rounded-md border-2 border-green-700 focus:outline-none focus:border-green-500 transition-colors"
+          type="text"
+          placeholder="Search..."
+        />
+        <ul className="absolute w-full  rounded-md ">
+          {debouncedQuery &&
+            suggestions.map(({ id, attributes: { title } }) => (
+              <li
+                aria-label="option"
+                key={id}
+                onClick={() => forwardToArticle(id, true)}
+                className="bg-white py-1.5 px-3.5 border-b text-[18px] rounded-md hover:bg-green-100 cursor-pointer active:bg-green-300 transition-colors "
+              >
+                {title}
+              </li>
+            ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

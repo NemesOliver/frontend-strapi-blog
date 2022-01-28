@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { HiMenuAlt2 } from "react-icons/hi";
+import { HiMenuAlt2 as Hamburger } from "react-icons/hi";
 import { ButtonText, ButtonOutlined, Navigation, Search } from "..";
 
 const Header = () => {
@@ -15,7 +15,7 @@ const Header = () => {
         <div className="max-w-[1248px] mx-auto h-full flex items-center px-1 md:px-4 ">
           {/* Mobile menu button */}
           <div className="mr-3 md:hidden" onClick={toggleMenu}>
-            <HiMenuAlt2 size={25} />
+            <Hamburger size={25} />
           </div>
           <Link href="/" passHref>
             <a className="font-medium text-[24px] ">

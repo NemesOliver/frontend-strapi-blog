@@ -1,15 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import { Layout } from "../components";
+import { CookieConsent, Layout } from "../components";
 import "../styles/globals.css";
 
 import * as ga from "../lib/ga";
 
 function MyApp({ Component, pageProps }) {
+  const [gaConsent, setGaConsent] = useState(false);
+  const [showConsentMessage, setShowConsentMessage] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    // If no Cookie is stored, and no consent has been given => show cookie consent message
+    if (typeof window !== "undefined" && !window.document.cookie) {
+      setShowConsentMessage(true);
+    }
+
     const handleRouteChange = (url) => {
       ga.pageview(url);
     };
@@ -24,28 +31,42 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router.events]);
 
+  const acceptCookies = () => {
+    setGaConsent(true); // Enable scripts
+    setShowConsentMessage(false);
+  };
+
+  const declineCookies = () => setShowConsentMessage(false);
+
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-      />
-      <script
-        id="ga-analyitcs"
-        dangerouslySetInnerHTML={{
-          __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                  page_path: window.location.pathname,
-                });
-        `,
-        }}
-      />
-
+      {gaConsent && (
+        <>
+          <Script
+            strategy="lazyOnload"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          />
+          <Script
+            id="ga-analyitcs"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+  
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                    page_path: window.location.pathname,
+                  });
+          `,
+            }}
+          />
+        </>
+      )}
+      {showConsentMessage && (
+        <CookieConsent accept={acceptCookies} decline={declineCookies} />
+      )}
       <Layout>
         <Component {...pageProps} />
       </Layout>

@@ -104,7 +104,7 @@ export async function getStaticProps() {
 
   try {
     const res = await fetch(
-      `${URL}?populate=blog_img&sort=publishedAt:DESC` // Populate with img and sort
+      `${URL}?populate=blog_img&sort=publishedAt:DESC&publicationState=preview` // Using publication=preview to see drafts in development
     );
     const { data: blogs } = await res.json();
 

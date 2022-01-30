@@ -18,3 +18,8 @@ export { default as ButtonText } from "./buttons/buttonText/ButtonText";
  * Demo
  */
 export { default as Advertisment } from "./advertisment/Advertisment";
+
+/**
+ * Google Analytics
+ */
+export { default as CookieConsent } from "./cookieConsent/CookieConsent";

@@ -9,7 +9,15 @@ import * as ga from "../lib/ga";
 function MyApp({ Component, pageProps }) {
   const [gaConsent, setGaConsent] = useState(false);
   const [showConsentMessage, setShowConsentMessage] = useState(false);
+  
   const router = useRouter();
+
+  const acceptCookies = () => {
+    setGaConsent(true); // Enable scripts
+    setShowConsentMessage(false);
+  };
+
+  const declineCookies = () => setShowConsentMessage(false);
 
   useEffect(() => {
     // If no Cookie is stored, and no consent has been given => show cookie consent message
@@ -30,13 +38,6 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-
-  const acceptCookies = () => {
-    setGaConsent(true); // Enable scripts
-    setShowConsentMessage(false);
-  };
-
-  const declineCookies = () => setShowConsentMessage(false);
 
   return (
     <>

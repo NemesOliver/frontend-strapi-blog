@@ -60,13 +60,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const oneHour = 3600;
-
   try {
     const res = await fetch(`${URL}/${params.id}?populate=blog_img`);
     const blog = await res.json();
 
-    return { props: { blog }, revalidate: oneHour };
+    return { props: { blog }, revalidate: 10 };
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

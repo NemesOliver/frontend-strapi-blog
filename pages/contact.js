@@ -15,8 +15,11 @@ const Contact = () => {
             <h3 className="text-[30px] font-bold mb-3">Contact us here.</h3>
             <p className="text-[18px] font-medium">
               Email:
-              <a className="underline cursor-pointer text-green-600">
-                email@example.com
+              <a
+                href="mailto:dev@olivernemes.co.uk?subject=Send from The Unexplained"
+                className="underline cursor-pointer text-green-600"
+              >
+                dev@olivernemes.co.uk
               </a>
             </p>
             <p className="text-[18px] font-medium">

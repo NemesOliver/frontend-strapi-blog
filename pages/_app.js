@@ -1,47 +1,15 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Script from "next/script";
-import { CookieConsent, Layout } from "../components";
+import { Layout } from "../components";
+import { useGoogleAnalytics } from "../hooks";
 import "../styles/globals.css";
 
-import * as ga from "../lib/ga";
-
 function MyApp({ Component, pageProps }) {
-  const [gaConsent, setGaConsent] = useState(false);
-  const [showConsentMessage, setShowConsentMessage] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    // If no Cookie is stored, and no consent has been given => show cookie consent message
-    if (typeof window !== "undefined" && !window.document.cookie) {
-      setShowConsentMessage(true);
-    }
-
-    const handleRouteChange = (url) => {
-      ga.pageview(url);
-    };
-    //When the component is mounted, subscribe to router changes
-    //and log those page views
-    router.events.on("routeChangeComplete", handleRouteChange);
-
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
-
-  const acceptCookies = () => {
-    setGaConsent(true); // Enable scripts
-    setShowConsentMessage(false);
-  };
-
-  const declineCookies = () => setShowConsentMessage(false);
+  const { gaConsentGranted, Consent } = useGoogleAnalytics();
 
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      {gaConsent && (
+      {gaConsentGranted && (
         <>
           <Script
             strategy="lazyOnload"
@@ -64,9 +32,7 @@ function MyApp({ Component, pageProps }) {
           />
         </>
       )}
-      {showConsentMessage && (
-        <CookieConsent accept={acceptCookies} decline={declineCookies} />
-      )}
+      <Consent />
       <Layout>
         <Component {...pageProps} />
       </Layout>

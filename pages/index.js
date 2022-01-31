@@ -18,10 +18,7 @@ export default function Home({ blogs }) {
     <div>
       <Head>
         <title>The Unexplained.</title>
-        <meta
-          name="description"
-          content="Blog that explains everything you have ever wanted to know"
-        />
+        <meta name="description" content="Blog/personal documetation" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

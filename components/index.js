@@ -20,6 +20,6 @@ export { default as ButtonText } from "./buttons/buttonText/ButtonText";
 export { default as Advertisment } from "./advertisment/Advertisment";
 
 /**
- * Google Analytics
+ * Cookies
  */
-export { default as CookieConsent } from "./cookieConsent/CookieConsent";
+export { default as CookieConsent } from "./cookie_consent/CookieConsent";

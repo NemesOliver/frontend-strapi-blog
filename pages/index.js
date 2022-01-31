@@ -103,7 +103,7 @@ export async function getStaticProps() {
     );
     const { data: blogs } = await res.json();
 
-    return { props: { blogs }, revalidate: 10 };
+    return { props: { blogs }, revalidate: 10 }; // seconds
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

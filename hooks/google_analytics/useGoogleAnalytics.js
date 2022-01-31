@@ -1,3 +1,7 @@
+/**
+ * @summary Cookie consent message and gtag.js script loading logic
+ */
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -6,12 +10,12 @@ import { CookieConsent } from "../../components";
 import * as ga from "../../lib/ga";
 
 const useGoogleAnalytics = () => {
-  const [gaConsentGranted, setgaConsentGranted] = useState(false);
+  const [gaConsentGranted, setGaConsentGranted] = useState(false);
   const [showConsentMessage, setShowConsentMessage] = useState(false);
   const router = useRouter();
 
   const acceptCookies = () => {
-    setgaConsentGranted(true); // Enable scripts
+    setGaConsentGranted(true); // Enable scripts
     setShowConsentMessage(false);
   };
 

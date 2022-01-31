@@ -72,7 +72,7 @@ export async function getStaticProps({ params }) {
     const res = await fetch(`${URL}/${params.id}?populate=blog_img`);
     const blog = await res.json();
 
-    return { props: { blog }, revalidate: 10 };
+    return { props: { blog }, revalidate: 10 }; // seconds
   } catch (e) {
     console.warn(e.message);
     return { props: {} };

@@ -30,12 +30,12 @@ export default function Home({ blogs }) {
               <Paper>
                 <div className="py-3 px-5">
                   <p className="text-[24px] font-medium mb-4 ">
-                    Read Our Latest Blogs
+                    What is this blog?
                   </p>
                   <p className="text-[18px]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aliquam ut id malesuada pellentesque maecenas adipiscing
-                    ante dis nunc. Faucibus sed lorem amet amet.
+                    This is my collection of &quot;blogs&quot; I have, written
+                    while working on my projects. It serves as a documentation,
+                    for myself.
                   </p>
                 </div>
               </Paper>
@@ -77,7 +77,7 @@ export default function Home({ blogs }) {
                         {new Date(blog.attributes.publishedAt).toDateString()}
                       </p>
                       <ReactMarkdown className="text-[18px] prose ">
-                        {`${blog.attributes.body.substring(0, 250)}...`}
+                        {`${blog.attributes.body.substring(0, 200)}...`}
                       </ReactMarkdown>
                     </div>
                   </Paper>

@@ -22,18 +22,6 @@ const Contact = () => {
                 dev@olivernemes.co.uk
               </a>
             </p>
-            <p className="text-[18px] font-medium">
-              Phone:
-              <a className="underline cursor-pointer text-green-600">
-                07333-333-333
-              </a>
-            </p>
-            <p className="text-[18px] font-medium">
-              Support:
-              <a className="underline cursor-pointer text-green-600">
-                support@example.com
-              </a>
-            </p>
           </div>
         </Paper>
       </div>

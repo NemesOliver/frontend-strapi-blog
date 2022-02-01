@@ -13,7 +13,9 @@ const Navigation = ({ closeMenu }) => {
               className="font-medium hover:bg-green-200 hover:scale-[1.02] antialiased transition-all cursor-pointer py-1 pl-1 rounded-md flex items-center"
             >
               {link.icon}
-              <a className="pl-2 ">{link.name}</a>
+              <a href="#" className="pl-2 ">
+                {link.name}
+              </a>
             </li>
           </Link>
         ))}

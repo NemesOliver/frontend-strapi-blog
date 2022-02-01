@@ -25,11 +25,18 @@ const useGoogleAnalytics = () => {
     // If no Cookie is stored, and no consent has been given => show cookie consent message
     if (typeof window !== "undefined" && !window.document.cookie) {
       setShowConsentMessage(true);
-    }
 
+      // Enable analytics
+    } else {
+      setGaConsentGranted(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const handleRouteChange = (url) => {
       ga.pageview(url);
     };
+
     //When the component is mounted, subscribe to router changes
     //and log those page views
     router.events.on("routeChangeComplete", handleRouteChange);
